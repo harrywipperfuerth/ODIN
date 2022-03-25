@@ -119,6 +119,7 @@ const topT = label({ textAlign: 0.5, verticalAlign: TOP })(({ t }) => [t])
 const bottomTitle = title => label({ textAlign: 0.5, verticalAlign: BOTTOM })(() => [title])
 const bottomT1 = title => label({ textAlign: 0.5, verticalAlign: BOTTOM })(({ t1 }) => [title, t1])
 const middleTitle = (title, textAlign = 0.5) => label({ textAlign, verticalAlign: MIDDLE })(() => [title])
+const startTitle = (title, textAlign = 0.5) => label({ textAlign: START, verticalAlign: MIDDLE })(() => [title])
 const middleT = textAlign => label({ textAlign, verticalAlign: MIDDLE })(({ t }) => [t])
 const doubleTitle = title => lift(cloneLines(({ t }) => [t ? `${t} ${title}` : `${title}`], cross([START, END], TOP)))
 const doubleTitleReserve = title => lift(cloneLines(({ t }) => [`${title}${t ? ' ' + t : ''}`], cross([START, END], TOP)))
@@ -197,5 +198,6 @@ export const labels = {
   'G*T*AS----': [middleT(0.2)],
   'G*T*F-----': [middleTitle('F', 0.1)],
   'G*T*VLE---': [middleTitle('EX')],
-  'G*T*VLI---': [middleTitle('IN')]
+  'G*T*VLI---': [middleTitle('IN')],
+  'G*T*VLV---': [startTitle('E')]
 }

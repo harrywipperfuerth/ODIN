@@ -222,6 +222,32 @@ geometries['G*G*PF----'] = ({ styles, line }) => {
 }
 
 /**
+ * TACGRP.TSK.ENV
+ * ENVELOP
+ */
+geometries['G*T*VLV---'] = ({ styles, line, resolution }) => {
+  const coords = TS.coordinates(line)
+  const segment = TS.segment(coords)
+  const angle = segment.angle()
+  const length = segment.getLength()
+
+  const xs = TS.projectCoordinates(length, angle, coords[0])([
+    [0.9, 0.05], [1, 0], [0.9, -0.05]
+  ])
+
+  const distance = resolution * 4
+  const [p0] = [
+    TS.projectCoordinates(distance, angle, segment.pointAlong(0.6))([[0, -0.1]])
+  ].flat()
+
+  return styles.solidLine((TS.collect([
+    TS.lineString([coords[0], p0]),
+    TS.lineString([p0, coords[1]]),
+    TS.lineString(xs)
+  ])))
+}
+
+/**
  * TACGRP.MOBSU.OBSTBP.CSGSTE.FRY
  * CROSSING SITE / FERRY
  */
